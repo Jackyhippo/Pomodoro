@@ -7,6 +7,7 @@
       <v-col cols="12">
         <!-- 新增事項的輸入框 -->
         <v-text-field
+          ref="inputTextField"
           v-model="input"
           append-icon="mdi-plus"
           label="新增事項"
@@ -14,10 +15,9 @@
           :rules="[rules.required, rules.length]"
           @keydown.enter="onInputSubmit"
           @click:append="onInputSubmit"
-          ref="inputTextField"
         ></v-text-field>
         <!-- 顯示清單項目 -->
-        <v-table>
+        <v-table class="table">
           <thead>
             <tr>
               <th>事項</th>
@@ -33,10 +33,10 @@
                 <!-- 如果是編輯模式，顯示輸入框，否則顯示文字 -->
                 <v-text-field
                   v-show="item.edit"
+                  ref="editTextField"
                   v-model="item.model"
                   :rules="[rules.required, rules.length]"
                   autofocus
-                  ref="editTextField"
                   @keydown.enter="onEditSubmit(item.id, i)"
                 ></v-text-field>
                 <span v-show="!item.edit">{{ item.text }}</span>
@@ -59,7 +59,7 @@
         <h1 class="text-center">已完成</h1>
       </v-col>
       <v-col cols="12">
-        <v-table>
+        <v-table class="table">
           <thead>
             <tr>
               <th>事項</th>
@@ -127,6 +127,13 @@ const onEditSubmit = (id, i) => {
   confirmEditItem(id)
 }
 </script>
+
+<style>
+.table{
+  border-radius: 5px;
+  background: rgba(211, 148, 11, 0.9);
+}
+</style>
 
 <route lang="yaml">
 meta:

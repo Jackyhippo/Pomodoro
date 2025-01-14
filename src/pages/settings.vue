@@ -5,7 +5,7 @@
         <h1 class="text-center">鈴聲設定</h1>
       </v-col>
       <v-col cols="12">
-        <v-table>
+        <v-table class="table">
           <thead>
             <tr>
               <th>名稱</th>
@@ -45,6 +45,13 @@ import { useSettingsStore } from '@/stores/settings'
 
 const settings = useSettingsStore()
 </script>
+
+<style>
+.table{
+  border-radius: 5px;
+  background: rgba(211, 148, 11, 0.9);
+}
+</style>
 
 <!--
 <route lang="json">
